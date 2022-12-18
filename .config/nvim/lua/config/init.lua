@@ -1,0 +1,5 @@
+require("config.commands")
+require("config.tmux")
+require("config.keymap")
+-- require("config.bufferline")
+-- require("config.tabline")
