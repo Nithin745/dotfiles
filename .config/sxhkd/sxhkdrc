@@ -1,0 +1,21 @@
+# printscreen
+@Print
+	screenshot
+
+shift + @Print
+	screenshot select
+
+control + @Print
+	screenshot window
+
+# Reload sxhkd
+super + shift + Escape
+	pkill -USR1 -x sxhkd
+
+# brightness keys
+XF86MonBrightnessUp
+	changebrightness up
+
+XF86MonBrightnessDown
+	changebrightness down
+
