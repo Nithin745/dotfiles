@@ -17,4 +17,4 @@ local settings = {
   ensure_installed = servers
 }
 
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup(settings)
