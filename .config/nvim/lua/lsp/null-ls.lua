@@ -14,6 +14,7 @@ local sources ={
     b.formatting.autopep8.with({
         extra_args={'--max-line-length=100'},
     }),
+    b.formatting.stylua,
     -- b.diagnostics.flake8.with({
     --     extra_args={'--max-line-length=100'},
     --     diagnostics_format = diagnostics_code_template,
@@ -33,6 +34,8 @@ local sources ={
         }
     }),
     b.formatting.rustfmt,
+    b.diagnostics.shellcheck,
+    -- b.code_actions.shellcheck,
     -- b.diagnostics.write_good.with({
     --     filetypes = {'markdown', 'org'}
     -- }),

@@ -2,6 +2,7 @@ local api = vim.api
 local augroup = vim.api.nvim_create_augroup
 local cmd = vim.api.nvim_create_autocmd
 
+local patronus = augroup("patronus", {clear=true})
 -- packer compile
 augroup("packer", { clear = true })
 cmd("BufWritePost", {
@@ -32,6 +33,13 @@ cmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
     end,
+})
+
+-- Reload buffer if it is changed outside of vim
+cmd({ 'FocusGained', 'BufEnter' }, {
+  pattern = '*',
+  command = [[silent! exe 'checktime']],
+  group = patronus,
 })
 
 -- turn off signcolumn for orgagenda

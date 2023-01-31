@@ -28,9 +28,10 @@ require("nvim-treesitter.configs").setup({
     },
     highlight = {
         enable = true,
+        max_file_lines = 2500,
         additional_vim_regex_highlighting = { 'org' },
         disable = function(_, bufnr)
-            return vim.api.nvim_buf_line_count(bufnr) > 5000
+            return vim.api.nvim_buf_line_count(bufnr) > 3000
         end,
     },
     -- plugins

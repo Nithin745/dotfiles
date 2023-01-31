@@ -1,4 +1,3 @@
-local dap = require('dap')
 local util = require('lspconfig/util')
 local python_dap = require('dap-python')
 local u = require("config.utils")
@@ -33,7 +32,7 @@ table.insert(require('dap').configurations.python, {
   console = 'internalConsole',
   justMyCode = true,
   args ={'runserver', '--noreload'},
-  env = {PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT="2"},
+  env = {PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT="10"},
   -- python = python_path()
   -- ... more options, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings
 })
@@ -48,7 +47,7 @@ table.insert(require('dap').configurations.python, {
   justMyCode = false,
   -- args = {'ingest', '--member', '--folder_name', '1/1/provider', '--filename', 'member.csv'},
   -- args = {'charts', '--project', '1', '--client', '1'},
-  env = {PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT="2"},
+  env = {PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT="10"},
   args = function ()
     local default_value = {'ingest', '--provider', '--folder_name', '1/1/provider', '--filename', 'provider.csv', '--dry_run'}
     local args = vim.fn.input('Command: ')

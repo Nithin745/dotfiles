@@ -63,8 +63,8 @@ u.nmap("<C-Up>", "10kzz")
 u.nmap("<C-Down>", "10jzz")
 
 -- tab navigation
-u.nmap("<C-n>", "gT")
-u.nmap("<C-p>", "gt")
+u.nmap("<C-p>", "gT")
+u.nmap("<C-n>", "gt")
 
 -- <c-w>T open in new tab
 
@@ -78,8 +78,15 @@ u.nmap("Q", ":quit!<CR>")
 -- u.nmap("<C-n>", ":bnext<CR>")
 -- u.nmap("<C-p>", ":bprevious<CR>")
 
-u.nmap("<Leader>tp", ":TSPlaygroundToggle<CR>")
-u.nmap("<Leader>cp", "<cmd>silent !tx<CR>")
+u.nmap("<Leader>tp", "<cmd>TSPlaygroundToggle<CR>")
+
+-- Resize windows
+u.nmap("(", "<c-w>5<")
+u.nmap(")", "<c-w>5>")
+
+-- Toggle DBUI
+u.nmap("<Leader>du", "<cmd>DBUIToggle<CR>")
+u.nmap("<Leader>ds", "<plug>(DBUI_SaveQuery)", {noremap=true})
 
 -- fzf
 -- u.map("<Leader>nx", ":lua require('fzf-lua').fzf_live('rg -n',{previewer='bat_native'})<CR>")

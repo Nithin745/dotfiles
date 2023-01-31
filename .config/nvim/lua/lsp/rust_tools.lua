@@ -1,20 +1,30 @@
 local rt = require("rust-tools")
+local provider = require("config.status").provider
 local M = {}
 
 M.setup = function(on_attach, capabilities, on_init)
     rt.setup({
-        tools = {
-            on_initialized = function(result)
-                vim.cmd([[
-                  augroup SuperDuperAus
-                    autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
-                    autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
-                    autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
-                    autocmd BufWritePre                     *.rs silent! lua vim.lsp.buf.formatting_sync()
-                  augroup END
-                ]])
-            end,
-        },
+        -- tools ={
+        --     on_initialized = function (health)
+        --         if health == 'ok' then
+        --             return
+        --         end
+        --     end
+        -- },
+        -- tools = {
+        --   on_initialized = function()
+        --     vim.cmd([[
+        --       augroup SuperDuperAus
+        --         autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
+        --         autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
+        --         autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
+        --         autocmd BufWritePre                     *.rs silent! lua vim.lsp.buf.formatting_sync()
+        --       augroup END
+        --     ]])
+        --   end,
+        -- },
+            -- autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
+            -- autocmd BufWritePre                     *.rs silent! lua vim.lsp.buf.formatting_sync()
         server = {
             -- on_attach = function(_, bufnr)
             --     -- Hover actions
@@ -22,12 +32,13 @@ M.setup = function(on_attach, capabilities, on_init)
             --     -- Code action groups
             --     vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
             -- end,
-            cmd = { "rustup", "run", "nightly", "rust-analyzer" },
+            cmd = { "rustup", "run", "stable", "rust-analyzer" },
             on_attach = on_attach,
             capabilities = capabilities,
-            on_init = on_init,
+            -- on_init = on_init,
             settings = {
                 ["rust-analyzer"] = {
+                    inlayHints = { locationLinks = false },
                     unstable_features = true,
                     build_on_save = false,
                     all_features = true,
@@ -57,4 +68,28 @@ M.setup = function(on_attach, capabilities, on_init)
     })
 end
 
+-- local alt_key_mappings = {
+--     {"code_lens", "n", "<leader>lcld","<Cmd>lua vim.lsp.codelens.refresh()<CR>"}, 
+--     {"code_lens", "n", "<leader>lclr", "<Cmd>lua vim.lsp.codelens.run()<CR>"}
+-- }
+--
+-- local function set_lsp_config(client, bufnr)
+--     require"lsp_signature".on_attach({
+--         bind = true,
+--         handler_opts = {border = "single"}
+--     })
+--
+--     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(...) end
+--     local function buf_set_option(...) vim.api.nvim_buf_set_option(...) end
+--
+--     buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+--
+--     for _, mappings in pairs(alt_key_mappings) do
+--         local capability, mode, lhs, rhs = unpack(mappings)
+--         if client.resolved_capabilities[capability] then
+--             buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+--         end
+--     end
+--
+-- end
 return M

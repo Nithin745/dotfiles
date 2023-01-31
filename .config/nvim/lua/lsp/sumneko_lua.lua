@@ -1,10 +1,22 @@
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
 local settings = {
     Lua = {
+        format = {
+            enable = false,
+            -- Put format options here
+            -- NOTE: the value should be STRING!!
+            defaultConfig = {
+                indent_style = "space",
+                indent_size = "2",
+            }
+        },
         runtime = {
             -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
             version = "LuaJIT",
             -- Setup your lua path
-            path = vim.split(package.path, ";"),
+            path = runtime_path
         },
         diagnostics = {
             -- Get the language server to recognize the `vim` global
@@ -19,9 +31,10 @@ local settings = {
             --     ["${3rd}/love2d/library"] = true,
             -- },
             checkThirdParty = false,
-            library = vim.api.nvim_get_runtime_file("", true),
-            maxPreload = 2000,
-            preloadFileSize = 20000,
+            ignoreDir = { ".git" }
+            -- library = vim.api.nvim_get_runtime_file("", true),
+            -- maxPreload = 2000,
+            -- preloadFileSize = 20000,
         },
         completion = { callSnippet = "Replace" },
         telemetry = { enable = false },

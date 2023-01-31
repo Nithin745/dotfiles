@@ -1,10 +1,8 @@
 # printscreen
 @Print
 	screenshot
-
 shift + @Print
 	screenshot select
-
 control + @Print
 	screenshot window
 
@@ -12,10 +10,39 @@ control + @Print
 super + shift + Escape
 	pkill -USR1 -x sxhkd
 
+# Application launcher
+super + d
+	rofi -terminal alacritty -show drun	
+
 # brightness keys
 XF86MonBrightnessUp
 	changebrightness up
-
 XF86MonBrightnessDown
 	changebrightness down
+
+# media keys
+XF86AudioPrev
+	playerctl -p spotifyd previous
+XF86AudioNext
+	playerctl -p spotifyd next
+XF86AudioPlay
+	playerctl -p spotifyd play-pause
+
+# Clipboard manager
+super + shift + y
+	rofi -terminal alacritty -sorting-method fzf -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
+# Suspend, lock, shutdown
+super + shift + period
+	systemctl suspend
+super + shift + m
+	betterlockscreen -l blur --off 3
+super + alt + semicolon
+	shutdown -h now
+super + shift + colon
+	reboot
+
+# Switch screen
+super + shift + s
+	screen
 

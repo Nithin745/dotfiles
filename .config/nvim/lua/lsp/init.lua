@@ -1,9 +1,8 @@
-require("config.dap")
-
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
     return
 end
+require("config.dap")
 
 require("plugins.mason")
 require("plugins.mason-lspconfig")
@@ -11,7 +10,19 @@ require("plugins.mason-lspconfig")
 local u = require("config.utils")
 
 local lsp = vim.lsp
--- lsp.set_log_level("debug")
+lsp.set_log_level("debug")
+local function check_background_task(client)
+    -- local ds = client:status
+    -- vim.schedule(function ()
+    --     print("status", ds)
+    -- end)
+  local status = client:rpcrequest("rust-analyzer/background_task_status", {})
+  if status == "complete" then
+    return true
+  else
+    return false
+  end
+end
 
 local border_opts = { border = "single", focusable = false, scope = "line" }
 
@@ -42,7 +53,7 @@ lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_pub
 -- end
 
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear=true })
 
 local lsp_formatting = function(bufnr)
     local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
@@ -133,6 +144,19 @@ end
 
 local on_init = function(client)
     client.config.flag.debounce_text_changes = 150
+    if client.name == "rust_analyzer" then
+        local timer = vim.loop.new_timer()
+        timer:start(100, 100, function()
+          if check_background_task(client) then
+            vim.schedule(function ()
+                print("status")
+            end)
+            timer:stop()
+            return
+            -- Do something after the background task is complete
+          end
+        end)
+   end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -152,6 +176,7 @@ local servers = {
     "css_ls",
     "bashls",
     "dockerls",
+    "sqlls",
     -- "ltex"
     "rust_tools"
 }

@@ -9,7 +9,7 @@ require("fzf-lua").setup({
     previewers = {
         bat = {
             cmd = "bat",
-            args = "--style=numbers,changes --color always",
+            args = "--style=numbers,changes --color always -r 200",
             theme = "gruvbox-dark",
         }
     },

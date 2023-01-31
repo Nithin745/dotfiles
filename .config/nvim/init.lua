@@ -26,7 +26,7 @@ vim.opt.pumheight = 10
 vim.opt.ignorecase = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
-vim.opt.updatetime = 50
+vim.opt.updatetime = 100
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 2
 vim.opt.cursorline = true
@@ -42,6 +42,12 @@ vim.opt.diffopt = "vertical"
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand("$HOME/.vim/undo")
+vim.g.db_ui_use_nerd_fonts = 1
+vim.g.db_ui_tmp_query_location = vim.fn.expand("$HOME/.cache/queries/tmp")
+vim.g.db_ui_execute_on_save = 0
+vim.g.db_ui_auto_execute_table_helpers = 0
+-- vim.g.db_ui_save_location = vim.fn.expand("$HOME/.cache/queries")
+-- vim.g.db_ui_debug = 0
 -- vim.opt.statusline = [[%f %y %m %= %p%% %l:%c]]
 
 -- tabs

@@ -71,7 +71,7 @@ return require("packer").startup(function(use)
     -- registers
     use_with_config("svermeulen/vim-subversive", "subversive") -- adds substitute operator
     -- use_with_config("svermeulen/vim-cutlass", "cutlass") -- separates cut and delete operations
-    use("tversteeg/registers.nvim") -- show list of items in registers
+    use("tversteeg/registers.nvim") -- show list of items in clipboard registers
 
     -- additional functionality
     use("ggandor/lightspeed.nvim") -- motion
@@ -87,7 +87,8 @@ return require("packer").startup(function(use)
             "andersevenrud/cmp-tmux",
             "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-nvim-lua",
-            "rcarriga/cmp-dap"
+            "rcarriga/cmp-dap",
+            "hrsh7th/cmp-nvim-lsp-document-symbol"
         },
         config = config("cmp"),
     })
@@ -130,7 +131,7 @@ return require("packer").startup(function(use)
     use("jose-elias-alvarez/nvim-lsp-ts-utils")
     use("jose-elias-alvarez/typescript.nvim")
     use_with_config("mizlan/iswap.nvim", "iswap") -- interactively swap function arguments
-    use("simrat39/rust-tools.nvim")
+    use("simrat39/rust-tools.nvim") -- rust Lsp utils
 
     -- visual
     use({
@@ -140,6 +141,8 @@ return require("packer").startup(function(use)
         "folke/tokyonight.nvim",
         "tanvirtin/monokai.nvim",
         "sainnhe/gruvbox-material",
+        "EdenEast/nightfox.nvim",
+        "navarasu/onedark.nvim",
     })
     --[[ use { "Everblush/everblush.nvim", as = "everblush" } ]]
     use("kyazdani42/nvim-web-devicons") -- dev icons
@@ -189,6 +192,14 @@ return require("packer").startup(function(use)
     --[[ use_with_config("lukas-reineke/headlines.nvim", "headlines") ]]
     use_with_config("akinsho/org-bullets.nvim", "org_bullets")
     use("dhruvasagar/vim-table-mode")
+
+    -- sxhkd syntax highlighting
+    use("baskerville/vim-sxhkdrc")
+
+    -- database
+    use("tpope/vim-dadbod")
+    use("kristijanhusak/vim-dadbod-ui")
+    use("kristijanhusak/vim-dadbod-completion")
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

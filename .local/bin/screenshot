@@ -1,5 +1,9 @@
-#! /bin/sh
-output="$HOME/Pictures/screenshots/%Y-%m-%d-%T-screenshot.png"
+#! /bin/bash
+dir="$HOME/Pictures/screenshots"
+count_file="$dir/.file_count"
+current_count=$(cat "$count_file")
+file_count=$((current_count+1))
+output="$dir/%Y-%m-%d_screenshot_$file_count.png"
 
 case "$1" in
 	"select") scrot "$output" --select --line mode=edge || exit ;;
@@ -7,4 +11,6 @@ case "$1" in
 	*) scrot "$output" || exit ;;
 esac
 
-# notify-send "Screenshot taken."
+# file_count=$(fd --base-directory "$dir" -t f -d 1 | wc -l)
+echo "$file_count" > "$count_file"
+notify-send "Screenshot taken."
