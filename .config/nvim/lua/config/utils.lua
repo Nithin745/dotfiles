@@ -1,5 +1,5 @@
 local api = vim.api
-local dapui = require("dapui")
+-- local dapui = require("dapui")
 local tbl_insert = table.insert
 local log = require("plenary.log").new({
   plugin = "nithin",
@@ -163,13 +163,28 @@ end
 
 M.get_buf_name = function(buf_name)
   local bufs = vim.api.nvim_list_bufs()
-  for i, buf in ipairs(bufs) do
-    local name = vim.api.nvim_buf_get_name(buf)
-    vim.schedule(function()
-      print(name)
-    end)
+  for _, buf_id in ipairs(bufs) do
+    local name = vim.api.nvim_buf_get_name(buf_id)
+    -- vim.schedule(function()
+    --   print(name)
+    -- end)
     if name == buf_name then
-      return buf, name
+      return buf_id, name
+    end
+  end
+  return false
+end
+
+M.get_buf_win_by_filetype = function (buf_filetype)
+  local wins = vim.api.nvim_list_wins()
+  for _, win_id in ipairs(wins) do
+    local buf_id = vim.api.nvim_win_get_buf(win_id)
+    local filetype = vim.api.nvim_buf_get_option(buf_id, 'filetype')
+    -- vim.schedule(function()
+    --   print(filetype)
+    -- end)
+    if filetype == buf_filetype then
+      return buf_id, win_id, filetype
     end
   end
   return false

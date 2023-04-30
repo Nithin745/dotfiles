@@ -24,20 +24,23 @@ local settings = {
     analysis = {
       typeCheckingMode = "off",
       autoSearchPaths = true,
-      useLibraryCodeForTypes = false,
+      useLibraryCodeForTypes = true,
+      stubPath = "typings",
       autoImportCompletions = false,
-      diagnosticMode = true
+      diagnosticMode = "workspace"
     },
   },
 }
 
 local M = {}
 
-M.setup = function(on_attach, capabilities)
-  require("lspconfig")['pyright'].setup({
+M.setup = function(on_attach, capabilities, after_init)
+  require("lspconfig").pyright.setup({
+    cmd = { "pyright-langserver", "--stdio"}, -- --watch
     on_attach = on_attach,
     capabilities = capabilities,
     settings = settings,
+    -- after_init = after_init,
     before_init = function(_, config)
       config.settings.python.pythonPath = get_python_path(config.root_dir)
     end,

@@ -88,7 +88,8 @@ return require("packer").startup(function(use)
             "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-nvim-lua",
             "rcarriga/cmp-dap",
-            "hrsh7th/cmp-nvim-lsp-document-symbol"
+            "hrsh7th/cmp-nvim-lsp-document-symbol",
+            "hrsh7th/cmp-nvim-lsp-signature-help"
         },
         config = config("cmp"),
     })
@@ -103,7 +104,7 @@ return require("packer").startup(function(use)
     use("neovim/nvim-lspconfig") -- makes lsp configuration easier
     use("folke/neodev.nvim") -- better sumneko_lua settings
     use("b0o/schemastore.nvim") -- simple access to json-language-server schemae
-    use { "ray-x/lsp_signature.nvim" } -- show function signature when you type
+    -- use { "ray-x/lsp_signature.nvim" } -- show function signature when you type
     use_with_config("RRethy/vim-illuminate", "illuminate") -- highlights and allows moving between variable references
     use("williamboman/mason.nvim") -- install external tool
     use("williamboman/mason-lspconfig.nvim") -- install lsp servers
@@ -137,7 +138,7 @@ return require("packer").startup(function(use)
     use({
         "sainnhe/sonokai",
         "sainnhe/edge",
-        "rmehri01/onenord.nvim",
+        -- "rmehri01/onenord.nvim",
         "folke/tokyonight.nvim",
         "tanvirtin/monokai.nvim",
         "sainnhe/gruvbox-material",

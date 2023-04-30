@@ -1,13 +1,19 @@
 lastupdatecheck: 0
 recentrepos:
+- /home/nithin/projects/backend/cpt_code
+- /home/nithin/projects/backend/rcm
 - /home/nithin/projects/frontend/nlp
 - /home/nithin/projects/backend/nlp
-- /home/nithin/projects/backend/rcm
+- /home/nithin/projects/file_digest/parser-835
+- /home/nithin/projects/file_digest/parser_835
 - /home/nithin/projects/backend/ECLAT.CodingPlatform.API
+- /home/nithin/Public/git_playground
+- /home/nithin/projects/backend/new_retro
 - /home/nithin/projects/frontend/ECLAT.CodingPlatform.FrontEnd
 - /home/nithin/projects/file_digest/edi_parser
 - /home/nithin/projects/trainee/light
 startuppopupversion: 5
 customcommandshistory:
 - q
+- w
 hidecommandlog: false

@@ -32,6 +32,7 @@ gitsigns.setup({
         u.buf_map(bufnr, "n", "<leader>hu", gitsigns.undo_stage_hunk)
         u.buf_map(bufnr, "n", "<leader>hR", gitsigns.reset_buffer)
         u.buf_map(bufnr, "n", "<leader>hp", gitsigns.preview_hunk)
+        u.buf_map(bufnr, "n", "<leader>ht", gitsigns.toggle_current_line_blame)
         u.buf_map(bufnr, "n", "<leader>hb", function()
             gitsigns.blame_line({ full = true })
         end)

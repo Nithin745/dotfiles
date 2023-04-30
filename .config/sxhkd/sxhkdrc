@@ -12,7 +12,7 @@ super + shift + Escape
 
 # Application launcher
 super + d
-	rofi -terminal alacritty -show drun	
+	rofi -terminal alacritty -show drun
 
 # brightness keys
 XF86MonBrightnessUp
@@ -28,19 +28,20 @@ XF86AudioNext
 XF86AudioPlay
 	playerctl -p spotifyd play-pause
 
+alt + shift + p
+	playerctl -p spotifyd play-pause
+
 # Clipboard manager
 super + shift + y
 	rofi -terminal alacritty -sorting-method fzf -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 # Suspend, lock, shutdown
 super + shift + period
-	systemctl suspend
+	systemctl hibernate
 super + shift + m
-	betterlockscreen -l blur --off 3
-super + alt + semicolon
-	shutdown -h now
+	loginctl lock-session
 super + shift + colon
-	reboot
+	systemctl suspend
 
 # Switch screen
 super + shift + s

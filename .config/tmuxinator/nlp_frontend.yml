@@ -50,3 +50,4 @@ windows:
   - lazygit:
     - lazygit
   - Build:
+    - nvm use 14

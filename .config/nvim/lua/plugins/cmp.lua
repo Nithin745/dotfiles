@@ -105,7 +105,8 @@ cmp.setup({
     -- only show one snippet, and always show at top
     { name = "orgmode", priority = 9997 },
     { name = "nvim_lua" },
-    { name = "snippy", priority = 9999, max_item_count = 1 },
+    { name = "snippy", priority = 9999, keyword_length = 2, max_item_count = 1 },
+    { name = "nvim_lsp_signature_help" },
     {
       name = "nvim_lsp",
       priority = 9998,
@@ -169,6 +170,18 @@ cmp.setup({
       return vim_item
     end,
   },
+  -- format_signature = function(sig_help)
+  --   return {
+  --     border = "rounded",
+  --     max_width = 80,
+  --     max_height = 20,
+  --     offset_x = 0,
+  --     offset_y = 1,
+  --     padding = " ",
+  --     -- Use the text returned by the LSP as the content of the signature help
+  --     data = sig_help,
+  --   }
+  -- end,
   enabled = function()
     return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
   end,

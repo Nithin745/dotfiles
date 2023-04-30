@@ -46,6 +46,11 @@ vim.g.db_ui_use_nerd_fonts = 1
 vim.g.db_ui_tmp_query_location = vim.fn.expand("$HOME/.cache/queries/tmp")
 vim.g.db_ui_execute_on_save = 0
 vim.g.db_ui_auto_execute_table_helpers = 0
+vim.opt.list = true
+vim.opt.listchars = { trail = '', tab = '', nbsp = '_', extends = '>', precedes = '<' } -- highlight
+vim.opt.wildmenu = true -- wildmenu
+vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'
+vim.opt.autoindent = true
 -- vim.g.db_ui_save_location = vim.fn.expand("$HOME/.cache/queries")
 -- vim.g.db_ui_debug = 0
 -- vim.opt.statusline = [[%f %y %m %= %p%% %l:%c]]
@@ -74,5 +79,5 @@ u.cmap("<C-;>", "<C-r><C-p>*")
 require("impatient")
 require("plugins")
 require("config")
-require('luatab').setup{}
+-- require('luatab').setup{}
 require("lsp")

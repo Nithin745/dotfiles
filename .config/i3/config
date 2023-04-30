@@ -28,8 +28,8 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-# exec_always --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l blur --off 3  -- --nofork 
-exec --no-startup-id xautolock -time 15 -locker "betterlockscreen -l blur --off 3"
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork <- Original
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.local/bin/lockscreen
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -38,7 +38,7 @@ exec --no-startup-id sxhkd &
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-set $refresh_i3blocks pkill -RTMIN+10 i3blocks 
+set $refresh_i3blocks pkill -RTMIN+10 i3blocks
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3blocks
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3blocks
@@ -59,7 +59,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
-# bindsym $mod+d exec --no-startup-id rofi -terminal alacritty -show drun  
+# bindsym $mod+d exec --no-startup-id rofi -terminal alacritty -show drun
 # -icon-theme "Papirus" -show-icons
 
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -208,12 +208,12 @@ bar {
 # Custom borders for all windows
 default_border pixel 1
 # class                 border  backgr. text    indicator child_border
-client.focused #343746 #343746 #F8F8F2 #285577 #2e9ef4 
+client.focused #343746 #343746 #F8F8F2 #285577 #2e9ef4
 client.focused_inactive #343746 #343746 #F8F8F2 #21222C #21222C
 client.unfocused #343746 #343746 #F8F8F2 #21222C #21222C
 # client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
 
-# Suspend and lock 
+# Suspend and lock
 # bindsym $mod+Shift+period exec systemctl suspend
 # bindsym $mod+Shift+s exec loginctl lock-session
 
@@ -221,12 +221,6 @@ client.unfocused #343746 #343746 #F8F8F2 #21222C #21222C
 exec_always --no-startup-id feh --bg-fill /home/nithin/Pictures/anime/moon-upside.jpg
 # Bar toggle, hide or show
 bindsym $mod+m bar mode toggle
-
-# Reboot
-# bindsym $mod+Shift+colon exec reboot
-
-# Shutdown
-# bindsym $mod+colon exec shutdown -h now
 
 # lx session manager
 exec --no-startup-id lxsession &
@@ -237,7 +231,7 @@ exec --no-startup-id greenclip daemon
 # Jump to urgent window
 bindsym $mod+x [urgent=latest] focus
 
-# Floating window
+# Floating window -> New meeting | Microsoft Teams
 for_window [title="Microsoft Teams Notification"] floating enable
 for_window [class="mpv"] floating enable, move position center
 for_window [class="Zathura"] floating enable, move position center
@@ -260,6 +254,7 @@ assign [class="Microsoft Teams - Preview"] $ws3
 
 # Start Thunar daemon, to handle auto mount usb
 exec --no-startup-id thunar --daemon &
+exec --no-startup-id unclutter &
 
 ## Manual management of external displays
 # Set the shortcuts and what they do
@@ -276,3 +271,4 @@ mode "$mode_display" {
 }
 # Declare here the shortcut to bring the display selection menu
 # bindsym $mod+shift+x mode "$mode_display"
+# workspace 3 output eDP-1

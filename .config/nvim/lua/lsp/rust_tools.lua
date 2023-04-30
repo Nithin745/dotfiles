@@ -1,75 +1,58 @@
 local rt = require("rust-tools")
-local provider = require("config.status").provider
 local M = {}
 
 M.setup = function(on_attach, capabilities, on_init)
-    rt.setup({
-        -- tools ={
-        --     on_initialized = function (health)
-        --         if health == 'ok' then
-        --             return
-        --         end
-        --     end
-        -- },
-        -- tools = {
-        --   on_initialized = function()
-        --     vim.cmd([[
-        --       augroup SuperDuperAus
-        --         autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
-        --         autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
-        --         autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
-        --         autocmd BufWritePre                     *.rs silent! lua vim.lsp.buf.formatting_sync()
-        --       augroup END
-        --     ]])
-        --   end,
-        -- },
-            -- autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
-            -- autocmd BufWritePre                     *.rs silent! lua vim.lsp.buf.formatting_sync()
-        server = {
-            -- on_attach = function(_, bufnr)
-            --     -- Hover actions
-            --     vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-            --     -- Code action groups
-            --     vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-            -- end,
-            cmd = { "rustup", "run", "stable", "rust-analyzer" },
-            on_attach = on_attach,
-            capabilities = capabilities,
-            -- on_init = on_init,
-            settings = {
-                ["rust-analyzer"] = {
-                    inlayHints = { locationLinks = false },
-                    unstable_features = true,
-                    build_on_save = false,
-                    all_features = true,
-                    checkOnSave = {
-                        -- enable = true,
-                        command = "clippy"
-                    },
-                    diagnostics = {
-                        enable = true,
-                        experimental = {
-                            enable = true
-                        }
-                    },
-                    assist = {
-                        importGranularity = "module",
-                        importPrefix = "by_self",
-                    },
-                    cargo = {
-                        loadOutDirsFromCheck = true
-                    },
-                    procMacro = {
-                        enable = true
-                    },
-                },
-            }
+  rt.setup({
+    -- tools = {
+    --   on_initialized = function(_)
+    --   end,
+    -- },
+    server = {
+      -- on_attach = function(_, bufnr)
+      --     -- Hover actions
+      --     vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      --     -- Code action groups
+      --     vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+      -- end,
+      cmd = { "rustup", "run", "stable", "rust-analyzer" },
+      on_attach = on_attach,
+      capabilities = capabilities,
+      -- after_init = on_init,
+      settings = {
+        ["rust-analyzer"] = {
+          inlayHints = { locationLinks = false },
+          unstable_features = true,
+          build_on_save = false,
+          all_features = true,
+          checkOnSave = {
+            -- enable = true,
+            command = "clippy",
+          },
+          diagnostics = {
+            enable = true,
+            experimental = {
+              enable = true,
+            },
+          },
+          assist = {
+            importGranularity = "module",
+            importPrefix = "by_self",
+          },
+          cargo = {
+            loadOutDirsFromCheck = true,
+            allFeatures = true
+          },
+          procMacro = {
+            enable = true,
+          },
         },
-    })
+      },
+    },
+  })
 end
 
 -- local alt_key_mappings = {
---     {"code_lens", "n", "<leader>lcld","<Cmd>lua vim.lsp.codelens.refresh()<CR>"}, 
+--     {"code_lens", "n", "<leader>lcld","<Cmd>lua vim.lsp.codelens.refresh()<CR>"},
 --     {"code_lens", "n", "<leader>lclr", "<Cmd>lua vim.lsp.codelens.run()<CR>"}
 -- }
 --

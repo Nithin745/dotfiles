@@ -6,4 +6,3 @@ vim.bo.textwidth = 0
 vim.bo.autoindent = true
 vim.bo.smartindent = true
 vim.bo.cindent = true
-

@@ -8,10 +8,11 @@ require("fzf-lua").setup({
     },
     previewers = {
         bat = {
-            cmd = "bat",
-            args = "--style=numbers,changes --color always -r 200",
+            -- cmd = "bat",
+            args = "--style=numbers,changes --color always -r 100",
             theme = "gruvbox-dark",
-        }
+        },
+        delay = 100
     },
     -- buffers = {
     --     previewer = 'bat'

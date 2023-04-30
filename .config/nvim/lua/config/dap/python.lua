@@ -32,7 +32,7 @@ table.insert(require('dap').configurations.python, {
   console = 'internalConsole',
   justMyCode = true,
   args ={'runserver', '--noreload'},
-  env = {PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT="10"},
+  env = {PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT="20"},
   -- python = python_path()
   -- ... more options, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings
 })
@@ -44,10 +44,10 @@ table.insert(require('dap').configurations.python, {
   program = '${workspaceFolder}/manage.py',
   django = false,
   console = 'internalConsole',
-  justMyCode = false,
+  justMyCode = true,
   -- args = {'ingest', '--member', '--folder_name', '1/1/provider', '--filename', 'member.csv'},
   -- args = {'charts', '--project', '1', '--client', '1'},
-  env = {PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT="10"},
+  env = {PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT="20"},
   args = function ()
     local default_value = {'ingest', '--provider', '--folder_name', '1/1/provider', '--filename', 'provider.csv', '--dry_run'}
     local args = vim.fn.input('Command: ')
