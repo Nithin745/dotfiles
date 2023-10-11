@@ -218,7 +218,7 @@ client.unfocused #343746 #343746 #F8F8F2 #21222C #21222C
 # bindsym $mod+Shift+s exec loginctl lock-session
 
 # Display Wallpaper
-exec_always --no-startup-id feh --bg-fill /home/nithin/Pictures/anime/moon-upside.jpg
+exec_always --no-startup-id feh --bg-fill /home/nithin/Pictures/anime/archie.png
 # Bar toggle, hide or show
 bindsym $mod+m bar mode toggle
 

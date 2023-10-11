@@ -7,4 +7,5 @@ if xrandr | grep "$extern disconnected"; then
 else
     xrandr --output "$intern" --off --output "$extern" --auto --primary
     # xrandr --output "$intern" --auto  --right-of "$extern" --output "$extern" --auto --primary
+    # xrandr --fb 7040x3960 --output "$intern" --scale 2x2 --pos 3200x0 --panning 3840x2160+3200+0  --right-of "$extern" --output "$extern" --mode 3200x1800 --primary
 fi
