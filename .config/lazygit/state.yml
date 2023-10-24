@@ -1,13 +1,13 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/nithin/projects/backend/nlp
-- /home/nithin/projects/frontend/nlp-fe
 - /home/nithin/projects/backend/matrix
+- /home/nithin/projects/backend/rcm
+- /home/nithin/projects/backend/nlp
 - /home/nithin/projects/frontend/matrix-fe
+- /home/nithin/projects/frontend/nlp-fe
 - /home/nithin/projects/backend/matrix_demo
 - /home/nithin/projects/my_things/cvat
 - /home/nithin/projects/trainee/light
-- /home/nithin/projects/backend/rcm
 - /home/nithin/.local/share/nvim/lazy/ui
 - /home/nithin/projects/backend/cpt_code
 - /home/nithin/projects/backend/ECLAT.CodingPlatform.API
