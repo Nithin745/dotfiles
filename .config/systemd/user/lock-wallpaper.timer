@@ -1,0 +1,13 @@
+[Unit]
+Description=Timer to change Wallpaper everyday @ 12:00
+
+[Timer]
+OnCalendar=*-*-* 12:00:00
+Persistent=true
+AccuracySec=1us
+RandomizedDelaySec=1h
+Unit=lock-wallpaper.service
+
+[Install]
+WantedBy=timers.target
+

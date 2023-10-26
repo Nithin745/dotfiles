@@ -1,0 +1,10 @@
+[Unit]
+Description=Change lock screen wallpaper
+After=network.target
+
+[Service]
+ExecStart=/home/nithin/.local/bin/lock-wallpaper
+
+[Install]
+WantedBy=multi-user.target
+
