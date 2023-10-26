@@ -1,0 +1,41 @@
+#!/usr/bin/python
+
+import os
+import shlex
+import subprocess
+
+WALPAPER_FOLDER = os.path.join(os.path.expanduser('~'), 'Pictures', 'Wallhaven')
+THUMBNAILS = os.path.join(os.path.expanduser('~'), '.cache', 'betterlockscreen', 'thumbnail.png')
+
+def get_wallpaper_path():
+    find_str = f"fd --search-path {WALPAPER_FOLDER} -t f"
+    shuf_str = "shuf -n 1"
+    find_cmd = shlex.split(find_str)
+    shuf_cmd = shlex.split(shuf_str)
+    find_output = subprocess.Popen(find_cmd, stdout=subprocess.PIPE)
+    shuf_str = subprocess.Popen(shuf_cmd, stdin=find_output.stdout, stdout=subprocess.PIPE)
+    output, error = shuf_str.communicate()
+
+    if error:
+        raise Exception(error)
+    return output.decode('utf-8').rstrip('\n')
+
+def create_thumbnail(path):
+    cmd_str = f"convert -thumbnail 200 {path} {THUMBNAILS}"
+    cmd = shlex.split(cmd_str)
+    subprocess.run(cmd)
+
+def generate_lockscreen_wallpaper():
+    path = get_wallpaper_path()
+    create_thumbnail(path)
+    cmd_str = f"betterlockscreen -u {path} --fx dimblur"
+    cmd = shlex.split(cmd_str)
+    subprocess.run(cmd)
+    # print(betterlock.stdout.read().decode('utf-8'))
+    notify_str = f"notify-send 'Lock screen wallpaper set sucessfully' --icon '{THUMBNAILS}'"
+    notify_cmd = shlex.split(notify_str)
+    subprocess.run(notify_cmd)
+
+
+if __name__ == '__main__':
+    generate_lockscreen_wallpaper()

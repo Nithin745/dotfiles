@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+betterlockscreen -l dimblur --off 60 -- --nofork

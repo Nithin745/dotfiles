@@ -1,0 +1,2 @@
+#!/bin/bash
+scp -i "${HOME}/.ssh/nlp_test_server.pem" "ec2-user@${1}" "$2"

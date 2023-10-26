@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DB="$HOME/.local/share/scripts_db/scripts_data.db"
+DIR="$HOME/Pictures/Wallhaven"
+query="SELECT * FROM lockscreen WHERE used_count<=1;"
+sql_data=$(sqlite3 "$DB" "$query" | awk -F '|' '{print $2}')
+path=$(fd --search-path "$DIR" -t f | shuf -n 1)
+
+
+# check_already_used(){
+#   path=$(fd --search-path "$DIR" -t f | shuf -n 1)
+#
+# }

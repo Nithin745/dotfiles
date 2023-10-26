@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Set the directory to search for duplicates
+DIR="/home/nithin/Pictures/Wallhaven/"
+
+# Find all regular files in the directory tree and calculate their MD5 checksums
+fd --search-path $DIR -t f --exec md5sum '{}' > /tmp/md5sum
+
+# Sort the MD5 checksums and extract only the duplicates
+duplicates=$(sort /tmp/md5sums | uniq -d --check-chars=32 | cut -c35-)
+
+# Loop over the duplicate checksums and delete the corresponding files
+for checksum in $duplicates; do
+    # Use find to locate all files with the given checksum and delete them
+    fd --search-path $DIR -t f --exec md5sum '{}' | grep "$checksum" | cut -c35- | xargs echo
+done
+
+# Remove the temporary file
+rm /tmp/md5sums
+

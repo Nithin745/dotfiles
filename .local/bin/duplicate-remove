@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Set the directory to search for duplicates
+DIR="/home/nithin/Pictures/Wallhaven/"
+
+# Find all regular files in the directory tree and calculate their MD5 checksums
+# files=$(fd --search-path $DIR -t f --glob '*(2)*')
+
+fd --search-path $DIR -t f --glob '*(1)*' | while read file; do
+  rm "$file"
+done

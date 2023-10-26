@@ -1,0 +1,3 @@
+#! /bin/bash
+
+docker exec -it redis-cache-1 redis-cli

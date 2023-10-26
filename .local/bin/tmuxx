@@ -1,0 +1,10 @@
+#!/bin/bash
+
+filename=$(fd --base-directory $HOME/.config/tmuxinator -t f -e yml --exec echo '{/.}' | fzf-tmux)
+# filename="${filename%.*}"
+if [[ $filename ]]; then
+  tmuxinator s $filename
+else
+  exit 0
+  # true 2> /dev/null
+fi

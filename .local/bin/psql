@@ -1,0 +1,4 @@
+#!/bin/bash
+# simple script to use psql running in docker container
+# echo "$@" >> /tmp/psql.log
+docker exec -i postgres psql "$@"
